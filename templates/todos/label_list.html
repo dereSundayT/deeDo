@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block contents %}
-  {% if todos %}
+  {% if object_list %}
     <ul>
         <li class="list_shopping li_num_0_1">
             <div class="col_md_1_list">   <p>SHOPPIGN</p> </div>
             <div class="col_md_2_list">
-                <h4>BUY COFFEE BEANS</h4>
+                <h4>{{object_list}}</h4>
                 <p>DODIDONE COFFEE STORE</p>
             </div>
             <div class="col_md_3_list">

@@ -1,25 +1,19 @@
 {% extends 'base.html' %}
 
 {% block contents %}
-  {% if todos %}
+  {% if object %}
     <ul>
         <li class="list_shopping li_num_0_1">
-            <div class="col_md_1_list">   <p>SHOPPIGN</p> </div>
+            <div class="col_md_1_list">   <p>LABEL</p> </div>
             <div class="col_md_2_list">
-                <h4>BUY COFFEE BEANS</h4>
-                <p>DODIDONE COFFEE STORE</p>
+                <h4>{{object.title}}</h4>
+                <p>Todos: Completed[{{object.todo_set.count}}] | <span style="color:red;">Uncompleted[0]</span></p>
             </div>
             <div class="col_md_3_list">
                 <div class="cont_text_date">
-                    <p>TODAY</p>      
+                    <p>{{object.updated_on|timesince}} Ago</p>      
                 </div>    
-                <div class="cont_btns_options">
-                    <ul>
-                        <li>
-                            <a href="#"><i class="material-icons"></i></a>
-                        </li>
-                    </ul>    
-                </div>
+        
             </div>
         </li>
     </ul>
