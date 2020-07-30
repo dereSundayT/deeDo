@@ -3,10 +3,10 @@
 {% block contents %}
     <form method="post"  novalidate>
     {% csrf_token %}
-    <fieldset class="form-group">
-        <label>
+    <div class="form-group container">
+        
         {{form|crispy}}
-    </fieldset>
-        <input type="submit" value="+New Label" class="btn btn-secondary btn-sm"/>
+    </div>
+        <input type="submit" value="+Save Label" class="btn btn-secondary btn-sm float-right"/>
     </form>
 {% endblock contents %}

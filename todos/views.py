@@ -8,6 +8,7 @@ from .models import Label, Todo
 
 def testView(request):
     return render(request, 'test.html')
+
 # CreateView
 
 
@@ -44,27 +45,35 @@ class TodoDeleteView(DeleteView):
 # CompletedView
 
 
-def isCompleted(request, pk,state):
+def isCompleted(request, pk, state):
     todo = get_object_or_404(Todo, pk=pk)
     if state == 0:
-        #status will be equal to False
+        # status will be equal to False
         todo.status = False
         todo.save()
     else:
-        #status will be equal to True
+        # status will be equal to True
         todo.status = True
         todo.save()
     return redirect('todos-detail', pk=pk)
 
-
+# CreateView
 class AddNewLabel(CreateView):
     model = Label
     fields = ['title']
-
-
+# #ListView
 class LabelLists(ListView):
     model = Label
-
-
+# #DetailView
 class LabelDetail(DetailView):
     model = Label
+# #UpdateView
+class LabelUpdateView(UpdateView):
+    model = Label
+    fields = ['title']
+# #DeleteView
+class LabelDeleteView(DeleteView):
+    model = Label
+    success_url = reverse_lazy('todos-label-list')
+
+# #D

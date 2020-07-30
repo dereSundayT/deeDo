@@ -1,33 +1,35 @@
 {% extends 'base.html' %}
 
 {% block contents %}
-  {% if object_list %}
-    <ul>
-        <li class="list_shopping li_num_0_1">
-            <div class="col_md_1_list">   <p>SHOPPIGN</p> </div>
-            <div class="col_md_2_list">
-                <h4>{{object_list}}</h4>
-                <p>DODIDONE COFFEE STORE</p>
-            </div>
-            <div class="col_md_3_list">
-                <div class="cont_text_date">
-                    <p>TODAY</p>      
-                </div>    
-                <div class="cont_btns_options">
-                    <ul>
-                        <li>
-                            <a href="#"><i class="material-icons"></i></a>
-                        </li>
-                    </ul>    
-                </div>
-            </div>
-        </li>
-    </ul>
-{% else %}
-    <h5>
-        No <b>Todolist</b> Added Yet....
-        <a href="{% url 'todos-create-label' %}"> Click me to Add </a> 
-        New Label to get Started
-    </h5>
-{% endif %}
+<div class="well" style="max-height: 600px; overflow: auto;">
+  
+        <a href="{% url 'todos-label-create' %}" class="btn btn-outline-success"> Create New Label </a>
+        <hr/>
+
+    {% if object_list %}
+    <div>
+            <ul class="list-group checked-list-box">
+                {% for label in object_list %}
+                  <a href="{% url 'todos-label-detail' label.id %}" class="list-item">
+                    <li class="list-group-item" data-checked="true">
+                        {{label.title}} 
+                        <small class="float-right">
+                            <a href="{% url 'todos-list' %}"> Todos:
+                                <span class="badge badge-default">{{label.todo_set.count}}</span> 
+                            </a>
+                            <span>| {{label.updated_on|timesince}}
+                        </small>
+                    </li>
+                    </a>
+                {% endfor %}   
+            </ul>
+        
+    {% else %}  
+        <h5>
+            No <b>Todolist</b> Added Yet....
+            <a href="{% url 'todos-label-create' %}"> Click me to Add </a> 
+            New Label to get Started
+        </h5>
+    {% endif %}
+</div>
 {% endblock contents %}

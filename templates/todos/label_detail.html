@@ -2,16 +2,36 @@
 
 {% block contents %}
   {% if object %}
-    <ul>
-        <li class="list_shopping li_num_0_1">
-            <div class="col_md_1_list">   <p>LABEL</p> </div>
-            <div class="col_md_2_list">
-                <h4>{{object.title}}</h4>
-                <p>Todos: Completed[{{object.todo_set.count}}] | <span style="color:red;">Uncompleted[0]</span></p>
+    <ul class="list-group card">
+        <li class="list-group-item">
+            <div class="card-header">   
+                  <h4> {{object.title}} </h4>
             </div>
-            <div class="col_md_3_list">
+            <div class="col_md_2_list card-body">
+               <b>No of Todos:</b> {{object.todo_set.count}}
+            </div>
+            <div class="card-footer">
                 <div class="cont_text_date">
-                    <p>{{object.updated_on|timesince}} Ago</p>      
+                    <p>
+                        <span>
+                        <b>Created:</b>
+                        <span class="badge badge-default">{{object.created_on|timesince}} Ago</span>
+                        </span>
+                       
+                        <span class="float-right">
+
+                            <a href="{% url 'todos-label-update' object.pk %}" class="btn-success btn-sm">Edit</a>
+                            <a href="{% url 'todos-label-delete' object.pk %}" class="btn-danger btn-sm">Delete</a>
+                             {% if object.status %}
+                                <a href="{% url 'todos-is-completed' object.pk 0 %}" class="btn-info btn-sm">Mark as not Done</a>
+                            {% else %}
+                                 <a href="{% url 'todos-is-completed' object.pk 1 %}" class="btn-info btn-sm">Mark as  Done</a>
+                            {% endif %}
+                        </span>
+                    </p>
+                    <p >
+                       
+                    </p>     
                 </div>    
         
             </div>
