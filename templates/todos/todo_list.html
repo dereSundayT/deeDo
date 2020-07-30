@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+  {% if object_list %}
+    <ul>
+        {% for todo in object_list %}
+          
+            <li class="list_shopping li_num_0_1">
+                <div class="col_md_1_list">  <p>{{todo.label.title|truncatechars:15}}</p> </div>
+               <a href=""> <div class="col_md_2_list">
+                    <h4>{{todo.title|truncatechars:34}}</h4>
+                    <p>{{todo.description|truncatechars:34}}</p>
+                </div>
+                </a>
+                <div class="col_md_3_list">
+                    <div class="cont_text_date">
+                        <p>{{todo.updated_on|timesince}}</p>      
+                    </div>    
+                    <div class="cont_btns_options">
+                        <ul>
+                        fir
+                            <li>
+                                <a href="#"><i class="material-icons"></i></a>
+                            </li>
+                        </ul>    
+                    </div>
+                </div>
+            </li>
+     
+        {% endfor %}
+    </ul>
+{% else %}
+    <h5>
+        No <b>Todolist</b> Added Yet....
+        <a href="{% url 'todos-create-label' %}"> Click me to Add </a> 
+        New Label to get Started
+    </h5>
+{% endif %}
+{% endblock contents %}

@@ -24,3 +24,6 @@ class Todo(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=False)
+
+    def get_absolute_url(self):
+        return reverse("todos-detail", kwargs={"pk": self.pk})

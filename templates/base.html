@@ -7,7 +7,6 @@
         <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <link href="{% static 'css/todos.css' %}" rel="stylesheet">
-
     </head>
     <body>
         <div class="cont_principal">
@@ -15,13 +14,26 @@
                 <div class="cont_todo_list_top">
                     <div class="cont_titulo_cont ">
                         <div class="cont_add_titulo_cont mr-4">
-                            <a href="{% url 'todos-home' %}" ><i class="material-icons"></i></a>
+                            <a href="{% url 'todos-list' %}" ><i class="material-icons"></i></a>
                         </div>
                         <h3 class="">{{title}}</h3>
                     </div>
                     
                     <div class="cont_add_titulo_cont">
-                        <a href="#" ><i class="material-icons"></i></a>
+                        {% comment %} <a href="#" ><i class="material-icons"></i></a> {% endcomment %}
+                         <ul class="navbar-nav ml-auto">
+                            <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Username
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+                                <a class="dropdown-item" href="#">New Label</a>
+                                <a class="dropdown-item" href="{% url 'todos-add' %}">New Todo</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="">Log out</a>
+                            </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 
@@ -33,7 +45,9 @@
 
             </div>
         </div>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+        <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
     </body>
 </html>

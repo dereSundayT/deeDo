@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+  {% if object %}
+    <ul>
+        <li class="list_shopping li_num_0_1">
+            <div class="col_md_1_list">   <p>{{object.label}}</p> </div>
+            <div class="col_md_2_list">
+                <h4>{{object.title}}</h4>
+                <p>{{object.description}}</p>
+            </div>
+            <div class="col_md_3_list">
+                <div class="cont_text_date">
+                    <p>{{object.updated_on|timesince}} Ago</p>      
+                </div>    
+        
+            </div>
+        </li>
+    </ul>
+{% else %}
+    <h5>
+        No <b>Todolist</b> Added Yet....
+        <a href="{% url 'todos-create-label' %}"> Click me to Add </a> 
+        New Label to get Started
+    </h5>
+{% endif %}
+{% endblock contents %}

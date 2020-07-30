@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block contents %}
+<form method="POST">
+{% csrf_token %}
+  <div class="form-group">
+    {{form}}
+ </div>
+  <input type="submit" value="+New Todo" class="btn btn-secondary btn-sm"/>
+</form>
+{% endblock contents %}
