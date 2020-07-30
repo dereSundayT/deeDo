@@ -19,3 +19,10 @@ urlpatterns = [
     path('label/<int:pk>/delete/', LabelDeleteView.as_view(),name="todos-label-delete"),
 
 ]
+"""
+A user should be able to set priority for each TODO
+
+Arrange each TODO by their priority. (Use order_by in Django models)
+
+Identify each user using authentication and authorization: 
+"""
