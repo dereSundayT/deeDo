@@ -1,40 +1,70 @@
-from django.shortcuts import render
-from django.views.generic import ListView, CreateView, DetailView
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from .models import Label, Todo
 
 # Create your views here.
 
-#CreateView 
+
+def testView(request):
+    return render(request, 'test.html')
+# CreateView
+
+
 class AddNewTodo(CreateView):
-    model=Todo
-    fields = ['title','label','description']
-# #ListView 
+    model = Todo
+    fields = ['title', 'label', 'description']
+
+# #ListView
+
+
 class TodoListView(ListView):
     model = Todo
-#DetailView
+
+# DetailView
+
+
 class TodoDetail(DetailView):
     model = Todo
-#UpdateView
+
+# UpdateView
 
 
-##DeleteView
+class TodoUpdateView(UpdateView):
+    model = Todo
+    fields = ['title', 'label', 'description']
 
-#CompletedView
-
-
-
-
+# DeleteView
 
 
+class TodoDeleteView(DeleteView):
+    model = Todo
+    success_url = reverse_lazy('todos-list')
 
+# CompletedView
+
+
+def isCompleted(request, pk,state):
+    todo = get_object_or_404(Todo, pk=pk)
+    if state == 0:
+        #status will be equal to False
+        todo.status = False
+        todo.save()
+    else:
+        #status will be equal to True
+        todo.status = True
+        todo.save()
+    return redirect('todos-detail', pk=pk)
 
 
 class AddNewLabel(CreateView):
     model = Label
     fields = ['title']
 
+
 class LabelLists(ListView):
     model = Label
+
 
 class LabelDetail(DetailView):
     model = Label

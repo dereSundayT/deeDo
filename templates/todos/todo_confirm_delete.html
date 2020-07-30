@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+   <div class="card p-5">
+   Are you sure you want to delete this <b>{{object.title}} </b>
+   <form method="post">
+    {% csrf_token %}
+    <hr/>
+    <button type="submit" class="btn btn-danger">Yes, Delete </button>
+    <a href="{% url 'todos-detail' object.id %}" class="btn btn-default"> No, Take me back </a>
+   </form>
+   </div>
+
+{% endblock contents %}
