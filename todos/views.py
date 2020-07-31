@@ -4,12 +4,15 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from .models import Label, Todo
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 
-
 def testView(request):
-    return render(request, 'test.html')
+    form = UserCreationForm
+    #template_name = 'test.html'
+    return render(request, 'test.html',{'form':form})
 
 # CreateView
 class AddNewTodo(LoginRequiredMixin,CreateView):
