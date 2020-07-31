@@ -26,7 +26,6 @@ class AddNewTodo(LoginRequiredMixin,CreateView):
 class TodoListView(LoginRequiredMixin,ListView):
     model = Todo
    
-    
     def get_queryset(self):
         return Todo.objects.filter(owner=self.request.user).order_by('-todo_priority')
 
@@ -40,18 +39,27 @@ class TodoDetail(LoginRequiredMixin,DetailView):
     
 
 # UpdateView
-
-
-class TodoUpdateView(UpdateView):
+class TodoUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model = Todo
     fields = ['title', 'label', 'description']
 
+    def test_func(self):
+        todo = self.get_object()
+        if todo.owner == self.request.user:
+            return True 
+        return False
+
 # DeleteView
-
-
-class TodoDeleteView(DeleteView):
+class TodoDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     model = Todo
     success_url = reverse_lazy('todos-list')
+
+    def test_func(self):
+        todo = self.get_object()
+        if todo.owner == self.request.user:
+            return True 
+        return False
+
 
 # CompletedView
 
