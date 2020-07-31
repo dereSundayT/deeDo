@@ -2,7 +2,6 @@
 
 {% block contents %}
     {% if object_list %}
-        <div class="well" style="max-height: 600px; overflow: auto;">
             <ul class="list-group checked-list-box">
                 {% for todo in object_list %}
                   <a href="{% url 'todos-detail' todo.id %}" class="list-item">
@@ -15,11 +14,10 @@
                     </a>
                 {% endfor %}   
             </ul>
-        </div>
     {% else %}  
         <h5>
             No <b>Todolist</b> Added Yet....
-            <a href="{% url 'todos-create-label' %}"> Click me to Add </a> 
+            <a href="{% url 'todos-add' %}"> Click me to Add </a> 
             New Label to get Started
         </h5>
     {% endif %}

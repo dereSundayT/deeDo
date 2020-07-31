@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 
 {% block contents %}
-<div class="well" style="max-height: 600px; overflow: auto;">
-  
         <a href="{% url 'todos-label-create' %}" class="btn btn-outline-success"> Create New Label </a>
         <hr/>
 
@@ -31,5 +29,4 @@
             New Label to get Started
         </h5>
     {% endif %}
-</div>
 {% endblock contents %}

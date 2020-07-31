@@ -22,11 +22,7 @@
 
                             <a href="{% url 'todos-label-update' object.pk %}" class="btn-success btn-sm">Edit</a>
                             <a href="{% url 'todos-label-delete' object.pk %}" class="btn-danger btn-sm">Delete</a>
-                             {% if object.status %}
-                                <a href="{% url 'todos-is-completed' object.pk 0 %}" class="btn-info btn-sm">Mark as not Done</a>
-                            {% else %}
-                                 <a href="{% url 'todos-is-completed' object.pk 1 %}" class="btn-info btn-sm">Mark as  Done</a>
-                            {% endif %}
+                            
                         </span>
                     </p>
                     <p >

@@ -1,4 +1,7 @@
 /* CSS REQUIRED */
+body {
+  font-size: 14px;
+}
 .state-icon {
   left: -5px;
 }
@@ -10,4 +13,5 @@
 /* DEMO ONLY - REMOVES UNWANTED MARGIN */
 .well .list-group {
   margin-bottom: 0px;
+  
 }
