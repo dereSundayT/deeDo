@@ -1,18 +1,48 @@
 {% extends 'base.html' %}
 
 {% block contents %}
+<div class="mt-5">
+        <a href="{% url 'todos-add' %}" class="btn btn-outline-dark">
+             Create New Todos
+        </a>
+        <hr/>
+</div>
     {% if object_list %}
             <ul class="list-group checked-list-box">
                 {% for todo in object_list %}
-                  <a href="{% url 'todos-detail' todo.id %}" class="list-item">
-                    <li class="list-group-item" data-checked="true">
-                      
-                        {{todo.title}} 
+                    {% if todo.status == False %}
+                        <a href="{% url 'todos-detail' todo.id %}" class="list-group-item list-group-item-action">
+                            {{todo.title}}
+                            {% if todo.todo_priority.id == 4 %}
+                                <span class="badge badge-danger">{{todo.todo_priority}}</span>
+                            {% elif todo.todo_priority.id == 3 %}
+                                <span class="badge badge-warning">{{todo.todo_priority}}</span>
+                            {% elif todo.todo_priority.id == 2 %}
+                                <span class="badge badge-info">{{todo.todo_priority}}</span>
+                            {% else %}
+                                <span class="badge badge-secondary">{{todo.todo_priority}}</span>
+                            {% endif %}
+                                <small class="float-right">
+                                <span class="badge badge-default"> {{todo.label}} </span> 
+                                <span>| {{todo.updated_on|timesince}}
+                                </small>
+                        </a>
                         
-                        <small class="float-right"><span class="badge badge-default"> {{todo.label}} </span> <span>| {{todo.updated_on|timesince}}</small>
-                    </li>
-                    </a>
+                    {% endif %}
                 {% endfor %}   
+                <hr/>
+                <div>
+                {% for todo in object_list %}
+                    {% if todo.status %}
+                        <strike class="">
+                                <a href="{% url 'todos-detail' todo.id %}" class="list-group-item list-group-item-action list-group-item-light">
+                                    {{todo.title}}
+                                        <small class="float-right"><span class="badge badge-default"> {{todo.label}} </span> <span>| {{todo.updated_on|timesince}}</small>
+                                </a>
+                        </strike>
+                    {% endif %}
+                {% endfor %}   
+                </div>
             </ul>
     {% else %}  
         <h5>

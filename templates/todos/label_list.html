@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
 
 {% block contents %}
-        <a href="{% url 'todos-label-create' %}" class="btn btn-outline-success"> Create New Label </a>
+       <div class="mt-5">
+        <a href="{% url 'todos-label-create' %}" class="btn btn-outline-dark">
+             Create New Label
+        </a>
         <hr/>
+</div>
 
     {% if object_list %}
     <div>
             <ul class="list-group checked-list-box">
                 {% for label in object_list %}
-                  <a href="{% url 'todos-label-detail' label.id %}" class="list-item">
+                  <a href="{% url 'todos-label-detail' label.id %}" class="list-group-item list-group-item-action">
                     <li class="list-group-item" data-checked="true">
                         {{label.title}} 
                         <small class="float-right">

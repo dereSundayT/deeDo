@@ -15,7 +15,7 @@ def testView(request):
 class AddNewTodo(LoginRequiredMixin,CreateView):
     model = Todo
     #label = Label.objects.filter(owner=request.user)
-    fields = ['title', 'label', 'description']
+    fields = ['title', 'label','todo_priority', 'description']
 
 
     def form_valid(self,form):
@@ -25,9 +25,10 @@ class AddNewTodo(LoginRequiredMixin,CreateView):
 # #ListView
 class TodoListView(LoginRequiredMixin,ListView):
     model = Todo
+   
     
     def get_queryset(self):
-        return Todo.objects.filter(owner=self.request.user)
+        return Todo.objects.filter(owner=self.request.user).order_by('-todo_priority')
 
 
 # DetailView
